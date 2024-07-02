@@ -4,11 +4,29 @@ import 'package:get/get.dart';
 class BluetoothDataService extends GetxService {
   // obs data
   final _connected = false.obs;
+  final _bluetoothSearching = false.obs;
+  final _bluetoothEnabled = false.obs;
+  final _bluetoothName = ''.obs;
+  final _bluetoothAddress = ''.obs;
+  // setter and getter for bluetooth searching
+  bool get bluetoothSearching => _bluetoothSearching.value;
+  set bluetoothSearching(bool value) => _bluetoothSearching.value = value;
+
+  // setter and getter for bluetooth enabled
+  bool get bluetoothEnabled => _bluetoothEnabled.value;
+  set bluetoothEnabled(bool value) => _bluetoothEnabled.value = value;
+
+  // setter and getter for bluetooth name
+  String get bluetoothName => _bluetoothName.value;
+  set bluetoothName(String value) => _bluetoothName.value = value;
+
+  // setter and getter for bluetooth address
+  String get bluetoothAddress => _bluetoothAddress.value;
+  set bluetoothAddress(String value) => _bluetoothAddress.value = value;
 
   // properti getter and setter
   bool get connected => _connected.value;
   set connected(bool value) => _connected.value = value;
-
 
   // data for tomato
   final _busuk = 0.obs;

@@ -1,5 +1,7 @@
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:3858707840.
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:myapp/widget/blue-search-list.dart';
 import 'package:myapp/widget/connection.dart';
 import 'package:myapp/widget/nodata.dart';
 
@@ -9,55 +11,43 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+        // tombol koneksi bluetooth
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Get.dialog(const BlueSearchList());
+          },
+          child: const Icon(
+            Icons.bluetooth_searching,
+          ),
+        ),
+
+
+
+
+        // =================================================================== screen view ========================================= //
+        // screen body
         body: SizedBox.fromSize(
           size: MediaQuery.of(context).size,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-              
-              
                 // user info and bluetooth connection
                 _buildUserInfo(),
-              
+
                 // spacer
                 const SizedBox(height: 20),
-            
 
                 // dinamis data
 
-
                 // no data widget
                 const NoDataWidget(),
-            
-                
               ],
             ),
           ),
         ));
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   // ============================================ widgets area ========================================= ///
 
@@ -105,7 +95,7 @@ class DashboardPage extends StatelessWidget {
         Positioned(
           child: _buildBluetoothStatus(),
           right: 16,
-          top: 16,
+          top: 38,
         ),
       ],
     );
