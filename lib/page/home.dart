@@ -9,22 +9,25 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   title: const Text('Dashboard'),
-        //   centerTitle: true,
-        //   backgroundColor: Colors.teal,
-        // ),
-        body: // Add the following code to the build method of the Home class:
-
-            SizedBox.fromSize(
+        body: SizedBox.fromSize(
           size: MediaQuery.of(context).size,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+              
+              
+                // user info and bluetooth connection
                 _buildUserInfo(),
+              
+                // spacer
                 const SizedBox(height: 20),
             
+
+                // dinamis data
+
+
+                // no data widget
                 const NoDataWidget(),
             
                 
