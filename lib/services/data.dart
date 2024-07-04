@@ -1,13 +1,46 @@
 import 'package:get/get.dart';
+import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 // data service
 class BluetoothDataService extends GetxService {
+
+
   // obs data
   final _connected = false.obs;
   final _bluetoothSearching = false.obs;
   final _bluetoothEnabled = false.obs;
   final _bluetoothName = ''.obs;
   final _bluetoothAddress = ''.obs;
+  late Rx<BluetoothConnection?> _blueConn; // TODO: Membuat koneksi bluetooth dengan Arduino Mega
+  // TODO: Menerima data dari Arduino dengan format *data*12~23~32# bagus, setengah matang, busuk
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // ============================================ PROPERTI AREA ============================
+  BluetoothConnection? get blueConn => _blueConn.value;
+  set blueConn(BluetoothConnection? value) => _blueConn.value = value;
   // setter and getter for bluetooth searching
   bool get bluetoothSearching => _bluetoothSearching.value;
   set bluetoothSearching(bool value) => _bluetoothSearching.value = value;

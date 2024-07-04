@@ -36,6 +36,84 @@ class BlueSearchList extends StatelessWidget {
             Get.back();
           },
         ),
+        ListTile(
+          leading: Icon(Icons.bluetooth),
+          title: Text('Device Name'),
+          subtitle: Text('Device Address'),
+          onTap: () {
+            Get.back();
+          },
+        ),
+        const Divider(),
+        ListTile(
+          leading: Icon(Icons.bluetooth),
+          title: Text('Device Name'),
+          subtitle: Text('Device Address'),
+          onTap: () {
+            Get.back();
+          },
+        ),
+        const Divider(),
+        ListTile(
+          leading: Icon(Icons.bluetooth),
+          title: Text('Device Name'),
+          subtitle: Text('Device Address'),
+          onTap: () {
+            Get.back();
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.bluetooth),
+          title: Text('Device Name'),
+          subtitle: Text('Device Address'),
+          onTap: () {
+            Get.back();
+          },
+        ),
+        const Divider(),
+        ListTile(
+          leading: Icon(Icons.bluetooth),
+          title: Text('Device Name'),
+          subtitle: Text('Device Address'),
+          onTap: () {
+            Get.back();
+          },
+        ),
+        const Divider(),
+        ListTile(
+          leading: Icon(Icons.bluetooth),
+          title: Text('Device Name'),
+          subtitle: Text('Device Address'),
+          onTap: () {
+            Get.back();
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.bluetooth),
+          title: Text('Device Name'),
+          subtitle: Text('Device Address'),
+          onTap: () {
+            Get.back();
+          },
+        ),
+        const Divider(),
+        ListTile(
+          leading: Icon(Icons.bluetooth),
+          title: Text('Device Name'),
+          subtitle: Text('Device Address'),
+          onTap: () {
+            Get.back();
+          },
+        ),
+        const Divider(),
+        ListTile(
+          leading: Icon(Icons.bluetooth),
+          title: Text('Device Name'),
+          subtitle: Text('Device Address'),
+          onTap: () {
+            Get.back();
+          },
+        ),
       ],
     );
   }
