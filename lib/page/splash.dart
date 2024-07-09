@@ -12,15 +12,13 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-
   @override
   void initState() {
     Timer(const Duration(seconds: 2), () {
-      Get.offAll(const DashboardPage());
+      Get.offAll(() => const DashboardPage());
     });
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +30,8 @@ class _SplashViewState extends State<SplashView> {
           children: [
             Image.asset('assets/images/logo.png'),
             const SizedBox(height: 20),
-            const Text('Bluetooth Tomato Counter', style: TextStyle(fontSize: 24)),
+            const Text('Bluetooth Tomato Counter',
+                style: TextStyle(fontSize: 24)),
             const Text('v1.0.0', style: TextStyle(fontSize: 16)),
           ],
         ),

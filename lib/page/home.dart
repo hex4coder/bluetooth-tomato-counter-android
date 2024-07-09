@@ -1,13 +1,23 @@
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:3858707840.
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:myapp/services/data.dart';
 import 'package:myapp/widget/blue-search-list.dart';
 import 'package:myapp/widget/connection.dart';
 import 'package:myapp/widget/nodata.dart';
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
 
+  @override
+  State<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  // global vars
+  BluetoothDataService bds = Get.find();
+
+  // ============================= RENDER UI ============================================
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,9 +31,6 @@ class DashboardPage extends StatelessWidget {
             Icons.bluetooth_searching,
           ),
         ),
-
-
-
 
         // =================================================================== screen view ========================================= //
         // screen body
@@ -50,9 +57,9 @@ class DashboardPage extends StatelessWidget {
   }
 
   // ============================================ widgets area ========================================= ///
-
   Widget _buildBluetoothStatus() {
     return Card(
+      elevation: 0,
       color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(14.0),
@@ -68,14 +75,16 @@ class DashboardPage extends StatelessWidget {
             const SizedBox(
               height: 24,
             ),
-            ConnectionWidget(),
+            Obx(() => ConnectionWidget(
+                  isConnected: bds.connected,
+                )),
             const SizedBox(
               height: 5,
             ),
-            Text(
-              "Terputus",
-              style: TextStyle(fontSize: 14),
-            ),
+            Obx(() => Text(
+                  bds.connected ? "Terhubung" : "Terputus",
+                  style: const TextStyle(fontSize: 14),
+                )),
           ],
         ),
       ),
@@ -85,7 +94,7 @@ class DashboardPage extends StatelessWidget {
   Widget _buildUserInfo() {
     return Stack(
       children: [
-        UserAccountsDrawerHeader(
+        const UserAccountsDrawerHeader(
           currentAccountPicture: CircleAvatar(
             backgroundImage: AssetImage('assets/images/logo.png'),
           ),
@@ -93,9 +102,9 @@ class DashboardPage extends StatelessWidget {
           accountEmail: Text('By Muhajirin - Teknik Informatika'),
         ),
         Positioned(
-          child: _buildBluetoothStatus(),
           right: 16,
           top: 38,
+          child: _buildBluetoothStatus(),
         ),
       ],
     );
