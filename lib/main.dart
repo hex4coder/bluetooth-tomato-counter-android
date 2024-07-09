@@ -16,10 +16,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  late BluetoothDataService bds;
+
   @override
   void initState() {
     super.initState();
-    Get.put(BluetoothDataService());
+    bds = BluetoothDataService();
+    Get.put(bds);
   }
 
   @override
@@ -31,7 +34,21 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         useMaterial3: true,
       ),
-      home: const SplashView(),
+      home: StreamBuilder(
+        stream: bds.blueEnabledStream,
+        builder: (context, snapshot) {
+          if (snapshot.data == true) {
+            return const SplashView();
+          } else {
+            return const Center(
+              child: Icon(
+                Icons.bluetooth_disabled,
+                color: Colors.grey,
+              ),
+            );
+          }
+        },
+      ),
     );
   }
 }

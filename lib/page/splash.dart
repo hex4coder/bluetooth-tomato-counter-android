@@ -14,7 +14,7 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    Timer(const Duration(seconds: 2), () {
+    Timer(const Duration(seconds: 1), () {
       Get.offAll(() => const DashboardPage());
     });
     super.initState();
@@ -24,7 +24,6 @@ class _SplashViewState extends State<SplashView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:1188471074.
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -33,6 +32,14 @@ class _SplashViewState extends State<SplashView> {
             const Text('Bluetooth Tomato Counter',
                 style: TextStyle(fontSize: 24)),
             const Text('v1.0.0', style: TextStyle(fontSize: 16)),
+            const SizedBox(height: 20),
+            const SizedBox(
+              height: 30,
+              width: 30,
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.grey,
+              ),
+            ),
           ],
         ),
       ),

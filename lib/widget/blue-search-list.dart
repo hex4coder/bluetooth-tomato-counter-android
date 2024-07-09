@@ -30,26 +30,40 @@ class _BlueSearchListState extends State<BlueSearchList> {
   @override
   Widget build(BuildContext context) {
     return SimpleDialog(
-      title: const Text('Bluetooth Devices'),
+      title: Obx(() => bds.isConnecting
+          ? const Text("Connecting...")
+          : const Text('Bluetooth Devices')),
       children: <Widget>[
         const Divider(),
         Obx(() => bds.isScanning
             ? const CircularProgressIndicator()
             : (bds.devices.isEmpty
                 ? const NoDataWidget(text: "Tidak ada bluetooth")
-                : Column(
-                    children: bds.devices.map((dev) {
-                      return ListTile(
-                        leading: const Icon(Icons.bluetooth),
-                        title: Text(dev.name),
-                        subtitle: Text(dev.address),
-                        onTap: () async {
-                          await bds.connectToDevice(dev);
-                          Get.back();
-                        },
-                      );
-                    }).toList(),
-                  ))),
+                : (bds.isConnecting
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : Column(
+                        children: bds.devices.map((dev) {
+                          return ListTile(
+                            leading: const Icon(Icons.bluetooth),
+                            title: Text(dev.name ?? "UNKNOWN"),
+                            subtitle: Text(dev.address),
+                            onTap: () async {
+                              bool connected = await bds.connectToDevice(dev);
+                              Get.back();
+
+                              if (!connected) {
+                                Get.snackbar(
+                                  "Failed",
+                                  "Gagal terhubung ke ${dev.name} [${dev.address}]",
+                                  backgroundColor: Colors.redAccent,
+                                );
+                              }
+                            },
+                          );
+                        }).toList(),
+                      )))),
       ],
     );
   }

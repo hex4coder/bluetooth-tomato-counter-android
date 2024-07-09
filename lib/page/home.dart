@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:myapp/services/data.dart';
 import 'package:myapp/widget/blue-search-list.dart';
 import 'package:myapp/widget/connection.dart';
+import 'package:myapp/widget/data-widget.dart';
 import 'package:myapp/widget/nodata.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -23,13 +24,17 @@ class _DashboardPageState extends State<DashboardPage> {
     return Scaffold(
 
         // tombol koneksi bluetooth
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Get.dialog(const BlueSearchList());
-          },
-          child: const Icon(
-            Icons.bluetooth_searching,
-          ),
+        floatingActionButton: Obx(
+          () => (bds.isDataEmpty && bds.connected)
+              ? Container()
+              : FloatingActionButton(
+                  onPressed: () {
+                    Get.dialog(const BlueSearchList());
+                  },
+                  child: const Icon(
+                    Icons.bluetooth_searching,
+                  ),
+                ),
         ),
 
         // =================================================================== screen view ========================================= //
@@ -46,10 +51,41 @@ class _DashboardPageState extends State<DashboardPage> {
                 // spacer
                 const SizedBox(height: 20),
 
-                // dinamis data
-
                 // no data widget
-                const NoDataWidget(),
+                Obx(() {
+                  if (!bds.connected) {
+                    return const Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.bluetooth_rounded,
+                          color: Colors.grey,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Belum ada device yang terkoneksi!",
+                          style: TextStyle(color: Colors.grey, fontSize: 10),
+                        ),
+                      ],
+                    );
+                  } else {
+                    // data
+                    if (bds.busuk == 0 &&
+                        bds.setengahMatang == 0 &&
+                        bds.matang == 0) {
+                      // tidak ada data
+                      return const NoDataWidget();
+                    }
+                    // render data
+                    return const Padding(
+                      padding: EdgeInsets.all(18.0),
+                      child: DataWidget(),
+                    );
+                  }
+                }),
               ],
             ),
           ),
